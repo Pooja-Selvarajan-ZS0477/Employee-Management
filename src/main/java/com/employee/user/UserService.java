@@ -70,7 +70,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public boolean deleteUser(int userId) {
+    private boolean deleteUser(int userId) {
         userRepository.deleteById(userId);
         return true;
     }

@@ -55,11 +55,11 @@ public class JwtAuthenticationController {
 			final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 			final String token = jwtTokenUtil.generateToken(userDetails);
 			User user = userRepository.findByUsername(authenticationRequest.getUsername());
-//			if (!user.isActive()) {
-//				return new ResponseEntity<String>("Please verify your account", HttpStatus.UNAUTHORIZED);
-//			} else {
-//
-//			}
+			if (!user.isActive()) {
+				return new ResponseEntity<String>("Please verify your account", HttpStatus.UNAUTHORIZED);
+			} else {
+
+			}
 			return ResponseEntity.ok(new JwtResponse(token));
 		} catch (UsernameNotFoundException e) {
 			try {
